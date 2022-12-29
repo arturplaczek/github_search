@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:api_client/api_client.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -13,7 +14,8 @@ class AuthorData extends Equatable {
   }
   final String? name;
   final String? email;
-  final String? date;
+  @DateTimeConverter()
+  final DateTime? date;
 
   @override
   List<Object?> get props => [name, email, date];
