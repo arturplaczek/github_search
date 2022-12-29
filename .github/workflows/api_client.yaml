@@ -1,12 +1,11 @@
 name: api_client
 
-concurrency: 
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 on:
   pull_request:
-    types: [ready_for_review, opened, synchronize, reopened]
     paths:
       - "packages/api_client/**"
       - ".github/workflows/api_client.yaml"
@@ -17,7 +16,5 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
-      # Resources have been temporarily excluded from test coverage.
-      # See #410 for more details
-      overage_excludes: "lib/src/generated/*.dart lib/**/*.g.dart lib/src/**/*_resource.dart"
+      flutter_version: 3.3.7
       working_directory: packages/api_client
