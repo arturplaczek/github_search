@@ -10,18 +10,18 @@ dependencies:
   api_client:
     path: ./packages/api_client
   bloc: ^8.1.0
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
   github_repository:
     path: ./packages/github_repository
-  cupertino_icons: ^1.0.2
+  very_good_analysis: ^3.1.0
 
 dev_dependencies:
   bloc_test: ^9.1.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
   mocktail: ^0.3.0
 
 flutter:
