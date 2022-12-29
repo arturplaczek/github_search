@@ -6,7 +6,10 @@ import '../../samples/github_repository_data_sample.dart';
 void main() {
   group('GithubRepositoryData', () {
     test('can be inistalized', () {
-      expect(() => const GithubRepositoryData(), returnsNormally);
+      expect(
+        () => const GithubRepositoryData(id: 0),
+        returnsNormally,
+      );
     });
 
     test('supports value equality', () {

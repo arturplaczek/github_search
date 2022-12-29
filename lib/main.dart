@@ -1,3 +1,4 @@
+import 'package:api_client/api_client.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,6 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    ApiClient().getRepositoryData('arturplaczek/github_search');
+    ApiClient().getCommitsData('arturplaczek/github_search');
     setState(() {
       _counter++;
     });

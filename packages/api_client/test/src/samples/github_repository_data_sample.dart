@@ -127,7 +127,7 @@ const githubRepositoryDataSample = <String, dynamic>{
   'allow_forking': true,
   'is_template': false,
   'web_commit_signoff_required': false,
-  'topics': [],
+  'topics': <dynamic>[],
   'visibility': 'public',
   'forks': 0,
   'open_issues': 0,

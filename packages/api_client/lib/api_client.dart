@@ -1,4 +1,4 @@
-/// Api client.
+/// Api client for downloading github data.
 library api_client;
 
 export 'src/api_client.dart';

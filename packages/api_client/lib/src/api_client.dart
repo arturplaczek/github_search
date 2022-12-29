@@ -2,7 +2,7 @@ import 'package:api_client/api_client.dart';
 import 'package:dio/dio.dart';
 
 /// {@template api_client}
-/// Api client.
+/// Api client for downloading github data.
 /// {@endtemplate}
 class ApiClient {
   /// {@macro api_client}
@@ -12,11 +12,11 @@ class ApiClient {
 
   final Dio _httpClient;
 
-  /// Base url for the api client repository.
+  /// Base url for the repository api.
   static String getClientRepositoryLink(String repositoryName) =>
       'https://api.github.com/repos/$repositoryName';
 
-  /// Base url for the api client commits.
+  /// Base url for the commits client.
   static String getClientCommitsLink(String repositoryName) =>
       'https://api.github.com/repos/$repositoryName/commits';
 

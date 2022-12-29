@@ -21,3 +21,11 @@ When the repository name is provided, the app fetches and displays the following
 - [ ] user taps a “send” button,
 - [ ] user is asked by the system to choose an application he wants to use for sending a message,
 - [ ] a new message in the selected app already contains passed commits’ information so that the user does not have to copy-paste it manually.
+
+
+Steps for ApiClient package:
+1. generate package files with 
+1. create ApiClient
+2. create models from pure json using JSON to DART
+3. clean up unused models and replace them with Maps
+4. add 100% coverage and workflow control
