@@ -1,4 +1,4 @@
-name: ci
+name: main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -6,12 +6,15 @@ concurrency:
 
 on:
   pull_request:
+    paths:
+      - "packages/main/**"
+      - ".github/workflows/main.yaml"
     branches:
       - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: noop
-        run: echo 'noop'
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_version: 3.3.7
+      working_directory: packages/main
