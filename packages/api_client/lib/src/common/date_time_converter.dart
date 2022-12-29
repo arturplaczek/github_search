@@ -6,11 +6,11 @@ import 'package:json_annotation/json_annotation.dart';
 /// {@endtemplate}
 class DateTimeConverter extends JsonConverter<DateTime, String> {
   /// {@macro date_time_converter}
-  const DateTimeConverter({this.format = 'yyyy-MM-dd HH:mm:ss'}) : super();
+  const DateTimeConverter({this.format = 'yyyy-MM-dd HH:mm:ss'});
 
   /// DateTime format.
   ///
-  /// Default value is `yyyy-MM-dd`.
+  /// Default value is `yyyy-MM-dd HH:mm:ss`.
   final String format;
 
   @override
