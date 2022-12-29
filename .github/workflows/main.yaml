@@ -1,17 +1,21 @@
-name: ci
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+name: main
 
 on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: noop
-        run: echo 'noop'
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_channel: "beta"
+      flutter_version: 3.6.0-0.1.pre
+      coverage_excludes: "**/*.g.dart"
