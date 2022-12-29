@@ -16,16 +16,8 @@ When the repository name is provided, the app fetches and displays the following
         - [ ] Using the history, the user can open the repository information again in the same way as if he typed the repository name manually again (see: 1.)
     - [ ] When the app is offline, the user should still be able to see the previously fetched repository information.
 - [ ] User can send the selected commits’ data (message, SHA value, author’s name) using 3rd party application installed on the phone (e.g. an e-mail client or Facebook Messenger) in the following way:
-- [ ] the commits on the list can be selected and unselected,
-- [ ] user selects at least one commit on the list,
-- [ ] user taps a “send” button,
-- [ ] user is asked by the system to choose an application he wants to use for sending a message,
-- [ ] a new message in the selected app already contains passed commits’ information so that the user does not have to copy-paste it manually.
-
-
-Steps for ApiClient package:
-1. generate package files with 
-1. create ApiClient
-2. create models from pure json using JSON to DART
-3. clean up unused models and replace them with Maps
-4. add 100% coverage and workflow control
+    - [ ] the commits on the list can be selected and unselected,
+    - [ ] user selects at least one commit on the list,
+    - [ ] user taps a “send” button,
+    - [ ] user is asked by the system to choose an application he wants to use for sending a message,
+    - [ ] a new message in the selected app already contains passed commits’ information so that the user does not have to copy-paste it manually.
