@@ -18,6 +18,8 @@ class AppState extends State<App> {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => GithubRepository(apiClient: widget._apiClient),
+      // TODO(arturplaczek): remove lazy after repo usage
+      lazy: false,
       child: const AppView(),
     );
   }
