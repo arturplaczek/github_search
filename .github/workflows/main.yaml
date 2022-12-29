@@ -1,19 +1,21 @@
 name: main
 
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-on:
-  pull_request:
-    paths:
-      - ".github/workflows/main.yaml"
-    branches:
-      - main
 
 jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
-      flutter_version: 3.3.7
-      working_directory: packages/main
+      flutter_channel: "beta"
+      flutter_version: 3.6.0-0.1.pre
+      coverage_excludes: "**/*.g.dart"
