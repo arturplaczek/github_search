@@ -11,6 +11,8 @@ dependencies:
     path: ./packages/api_client
   flutter:
     sdk: flutter
+  github_repository:
+    path: ./packages/github_repository
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
