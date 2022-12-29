@@ -7,7 +7,6 @@ concurrency:
 on:
   pull_request:
     paths:
-      - "packages/main/**"
       - ".github/workflows/main.yaml"
     branches:
       - main
