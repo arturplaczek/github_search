@@ -242,11 +242,6 @@ class GithubRepositoryData extends Equatable {
   @JsonKey(name: 'subscribers_count')
   final int? subscribersCount;
 
-  Map<String, dynamic> toJson() => _$GithubRepositoryDataToJson(this);
-
-  @override
-  bool get stringify => true;
-
   @override
   List<Object?> get props {
     return [
