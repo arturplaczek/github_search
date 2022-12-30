@@ -2,5 +2,17 @@
   "appTitle": "Welcome in Github search!",
   "@appTitle": {
     "description": "title of application"
+  },
+  "githubNameText": "Github name",
+  "@githubNameText": {
+    "description": "Text displayed on GithubNameEditText"
+  },
+  "githubNameTextHint": "owner/repository",
+  "@githubNameTextHint": {
+    "description": "Text displayed on GithubNameEditText"
+  },
+  "githubNameErrorText": "Please enter a valid github name in the format\n `owner/repository",
+  "@githubNameErrorText": {
+    "description": "Text displayed on GithubNameErrorText"
   }
 }
