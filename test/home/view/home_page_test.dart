@@ -10,7 +10,6 @@ class _MockStorage extends Mock implements Storage {}
 
 void main() {
   late Storage storage;
-  late GithubNameBloc bloc;
 
   setUp(() {
     storage = _MockStorage();
