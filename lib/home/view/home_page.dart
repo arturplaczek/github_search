@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/home/home.dart';
 import 'package:github_search/l10n/l10n.dart';
 
@@ -8,10 +7,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GithubNameBloc(),
-      child: const HomeView(),
-    );
+    return const HomeView();
   }
 }
 
