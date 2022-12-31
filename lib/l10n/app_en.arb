@@ -14,5 +14,13 @@
   "githubNameErrorText": "Please enter a valid github name in the format\n `owner/repository",
   "@githubNameErrorText": {
     "description": "Text displayed on GithubNameErrorText"
+  },
+  "githubSearchText": "Search for a Github repository",
+  "@githubSearchText": {
+    "description": "Text displayed on home page as default"
+  },
+  "errorText": "Something went wrong!",
+  "@errorText": {
+    "description": "Text displayed on error"
   }
 }
