@@ -3,7 +3,45 @@ A simple application to search the github repository.
 It allows user to input a GitHub repository name in the following format: “<owner>/<repository>“, e.g. “bright/shouldko”.
 
 
-List of features & overview:
+Repository for downloading github data.
+
+## How to run 💻
+
+**❗ In the root of project.**
+
+
+Install packages:
+
+```sh
+flutter packages get
+```
+
+Run the app
+
+```sh
+flutter run lib/main.dart -d chrome
+```
+
+---
+
+## Overview:
+
+Main branch shows current progress of task.
+- PR main-8 shows progress at 8h
+- PR main-12 shows progress at 12h
+
+I decided to do this because at 8h the backend was being done, but with the UI there wasn't much of it.
+
+And I know, the UI is ugly but for me and for now it is not part of the task.
+
+---
+## Bugs:
+- Cache 
+
+HydratedBloc works strangely on the web version. While the application is running, the cache works properly but it is empty after launch. I haven't had time to debug the problem.
+
+---
+## List of features & overview:
 
 
 When the repository name is provided, the app fetches and displays the following information about it using GitHub API:
