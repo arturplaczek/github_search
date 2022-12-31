@@ -19,6 +19,7 @@ class _MockGithubSearchBloc
 
 void main() {
   late Storage storage;
+  late GithubSearchBloc bloc;
 
   setUp(() {
     storage = _MockStorage();
@@ -26,6 +27,12 @@ void main() {
       () => storage.write(any(), any<dynamic>()),
     ).thenAnswer((_) async {});
     HydratedBloc.storage = storage;
+
+    bloc = _MockGithubSearchBloc();
+    when(() => bloc.state).thenReturn(const GithubSearchState());
+    when(() => bloc.stream).thenAnswer(
+      (_) => Stream.value(const GithubSearchState()),
+    );
   });
 
   group('HomePage', () {
@@ -50,6 +57,7 @@ void main() {
     testWidgets('calls onComplete on GithubNameTextfield', (tester) async {
       await tester.pumpSubject(
         const HomeView(),
+        bloc: bloc,
       );
 
       const repositoryName = 'test/test';
@@ -61,17 +69,11 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text(repositoryName), findsNWidgets(2));
+      verify(() => bloc.add(const GithubSearchEventSearch(repositoryName)));
     });
   });
 
   group('HomeViewBody', () {
-    late GithubSearchBloc bloc;
-
-    setUp(() {
-      bloc = _MockGithubSearchBloc();
-    });
-
     testWidgets('renders CircularProgressIndicator on loading state',
         (WidgetTester tester) async {
       const state = GithubSearchState(
