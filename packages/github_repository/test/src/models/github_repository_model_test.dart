@@ -62,5 +62,18 @@ void main() {
       expect(firstModel, equals(secondModel));
       expect(firstModel, isNot(same(secondModel)));
     });
+
+    test('can be converted to/from Json', () {
+      final githubRepositoryModel = GithubRepositoryModel(
+        id: -1,
+        commits: <GithubCommitModel>[githubCommitModel],
+      );
+
+      final json = githubRepositoryModel.toJson();
+      final githubRepositoryModelFromJson =
+          GithubRepositoryModel.fromJson(json);
+
+      expect(githubRepositoryModelFromJson, equals(githubRepositoryModel));
+    });
   });
 }
