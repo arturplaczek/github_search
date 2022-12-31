@@ -75,5 +75,19 @@ void main() {
 
       expect(data.first, equals(secondModel));
     });
+
+    test('can be converted to/from Json', () {
+      final githubCommitModel = GithubCommitModel(
+        message: 'not-important',
+        authorName: 'not-important',
+        sha: 'not-important',
+        date: DateTime(2020, 2),
+      );
+
+      final json = githubCommitModel.toJson();
+      final githubCommitModelFromJson = GithubCommitModel.fromJson(json);
+
+      expect(githubCommitModelFromJson, equals(githubCommitModel));
+    });
   });
 }
