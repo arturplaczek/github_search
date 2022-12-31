@@ -39,6 +39,7 @@ class GithubRepositoryModel extends Equatable {
   final int id;
 
   /// List of commits for the repository.
+  @_ListConverter()
   final List<GithubCommitModel> commits;
 
   @override
@@ -46,4 +47,20 @@ class GithubRepositoryModel extends Equatable {
         id,
         commits,
       ];
+}
+
+class _ListConverter
+    implements
+        JsonConverter<List<GithubCommitModel>, List<Map<String, dynamic>>> {
+  const _ListConverter();
+
+  @override
+  List<GithubCommitModel> fromJson(List<Map<String, dynamic>> json) {
+    return json.map(GithubCommitModel.fromJson).toList();
+  }
+
+  @override
+  List<Map<String, dynamic>> toJson(List<GithubCommitModel> object) {
+    return object.map((e) => e.toJson()).toList();
+  }
 }

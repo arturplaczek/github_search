@@ -10,16 +10,15 @@ GithubRepositoryModel _$GithubRepositoryModelFromJson(
         Map<String, dynamic> json) =>
     GithubRepositoryModel(
       id: json['id'] as int,
-      commits: (json['commits'] as List<dynamic>?)
-              ?.map(
-                  (e) => GithubCommitModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      commits: json['commits'] == null
+          ? const []
+          : const _ListConverter()
+              .fromJson(json['commits'] as List<Map<String, dynamic>>),
     );
 
 Map<String, dynamic> _$GithubRepositoryModelToJson(
         GithubRepositoryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'commits': instance.commits,
+      'commits': const _ListConverter().toJson(instance.commits),
     };
