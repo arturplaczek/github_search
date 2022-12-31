@@ -7,21 +7,18 @@ part of 'github_repository_model.dart';
 // **************************************************************************
 
 GithubRepositoryModel _$GithubRepositoryModelFromJson(
-  Map<String, dynamic> json,
-) =>
+        Map<String, dynamic> json) =>
     GithubRepositoryModel(
       id: json['id'] as int,
       commits: (json['commits'] as List<dynamic>?)
               ?.map(
-                (e) => GithubCommitModel.fromJson(e as Map<String, dynamic>),
-              )
+                  (e) => GithubCommitModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );
 
 Map<String, dynamic> _$GithubRepositoryModelToJson(
-  GithubRepositoryModel instance,
-) =>
+        GithubRepositoryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'commits': instance.commits,
