@@ -54,7 +54,9 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(CommitWidget));
+      await tester.tap(find.text('message'));
+
+      await tester.pumpAndSettle();
 
       expect(onTapCalled, true);
     });
