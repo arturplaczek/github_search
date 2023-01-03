@@ -98,11 +98,9 @@ void main() {
         date: DateTime(2020, 2),
       );
 
-      final githubCommitModelCopy = githubCommitModel.copyWith(
-        isSelected: true,
-      );
+      final githubCommitModelCopy = githubCommitModel.copyWith();
 
-      expect(githubCommitModelCopy.isSelected, isTrue);
+      expect(githubCommitModel, equals(githubCommitModelCopy));
     });
   });
 }

@@ -84,15 +84,9 @@ void main() {
         ],
       );
 
-      final githubRepositoryModelCopy = githubRepositoryModel.copyWith(
-        commits: <GithubCommitModel>[
-          githubCommitModel,
-          githubCommitModel,
-        ],
-      );
+      final githubRepositoryModelCopy = githubRepositoryModel.copyWith();
 
-      expect(githubRepositoryModelCopy.id, equals(-1));
-      expect(githubRepositoryModelCopy.commits, hasLength(2));
+      expect(githubRepositoryModel, equals(githubRepositoryModelCopy));
     });
   });
 }
