@@ -12,6 +12,7 @@ class GithubSearchBloc
   })  : _githubRepository = githubRepository,
         super(const GithubSearchState()) {
     on<GithubSearchEventSearch>(_onGithubSearchEventSearch);
+    on<GithubSearchToggleCommit>(_onGithubSearchToggleCommit);
   }
 
   final GithubRepository _githubRepository;
@@ -49,6 +50,29 @@ class GithubSearchBloc
     } on Exception {
       emit(state.copyWith(status: GithubSearchStatus.failure));
     }
+  }
+
+  void _onGithubSearchToggleCommit(
+    GithubSearchToggleCommit event,
+    Emitter<GithubSearchState> emit,
+  ) {
+    if (state.repository == null) {
+      return;
+    }
+
+    final commits = state.repository!.commits.map((commit) {
+      if (commit.sha == event.sha) {
+        return commit.copyWith(isSelected: !commit.isSelected);
+      }
+
+      return commit;
+    }).toList();
+
+    emit(
+      state.copyWith(
+        repository: state.repository!.copyWith(commits: commits),
+      ),
+    );
   }
 
   @override

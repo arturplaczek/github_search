@@ -148,5 +148,31 @@ void main() {
         ],
       );
     });
+
+    group('GithubSearchToggleCommit', () {
+      blocTest<GithubSearchBloc, GithubSearchState>(
+        'toggles selection on commit',
+        build: () => GithubSearchBloc(githubRepository: githubRepository),
+        seed: () => GithubSearchState(
+          repository: githubRepositoryModel,
+          cache: <String, GithubRepositoryModel>{
+            'repository-name': githubRepositoryModel,
+          },
+          status: GithubSearchStatus.success,
+        ),
+        act: (bloc) {
+          bloc.add(const GithubSearchToggleCommit('sha'));
+        },
+        expect: () => [
+          isA<GithubSearchState>().having(
+            (state) => state.repository!.commits.firstWhere(
+              (commit) => commit.isSelected,
+            ),
+            'has an element with the selected commit',
+            isNotNull,
+          ),
+        ],
+      );
+    });
   });
 }
