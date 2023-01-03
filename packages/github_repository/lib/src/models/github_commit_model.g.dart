@@ -12,6 +12,7 @@ GithubCommitModel _$GithubCommitModelFromJson(Map<String, dynamic> json) =>
       sha: json['sha'] as String,
       authorName: json['authorName'] as String,
       date: DateTime.parse(json['date'] as String),
+      isSelected: json['isSelected'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$GithubCommitModelToJson(GithubCommitModel instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$GithubCommitModelToJson(GithubCommitModel instance) =>
       'sha': instance.sha,
       'authorName': instance.authorName,
       'date': instance.date.toIso8601String(),
+      'isSelected': instance.isSelected,
     };
