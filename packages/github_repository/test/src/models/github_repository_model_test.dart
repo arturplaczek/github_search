@@ -75,5 +75,24 @@ void main() {
 
       expect(githubRepositoryModelFromJson, equals(githubRepositoryModel));
     });
+
+    test('support copyWith', () {
+      final githubRepositoryModel = GithubRepositoryModel(
+        id: -1,
+        commits: <GithubCommitModel>[
+          githubCommitModel,
+        ],
+      );
+
+      final githubRepositoryModelCopy = githubRepositoryModel.copyWith(
+        commits: <GithubCommitModel>[
+          githubCommitModel,
+          githubCommitModel,
+        ],
+      );
+
+      expect(githubRepositoryModelCopy.id, equals(-1));
+      expect(githubRepositoryModelCopy.commits, hasLength(2));
+    });
   });
 }

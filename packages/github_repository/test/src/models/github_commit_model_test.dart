@@ -89,5 +89,20 @@ void main() {
 
       expect(githubCommitModelFromJson, equals(githubCommitModel));
     });
+
+    test('support copyWith', () {
+      final githubCommitModel = GithubCommitModel(
+        message: 'not-important',
+        authorName: 'not-important',
+        sha: 'not-important',
+        date: DateTime(2020, 2),
+      );
+
+      final githubCommitModelCopy = githubCommitModel.copyWith(
+        isSelected: true,
+      );
+
+      expect(githubCommitModelCopy.isSelected, isTrue);
+    });
   });
 }

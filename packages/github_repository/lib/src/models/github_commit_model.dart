@@ -53,6 +53,19 @@ class GithubCommitModel extends Equatable
   /// Indicates whether the commit is selected.
   final bool isSelected;
 
+  /// Returns a copy of the [GithubCommitModel].
+  GithubCommitModel copyWith({
+    bool? isSelected,
+  }) {
+    return GithubCommitModel(
+      message: message,
+      sha: sha,
+      authorName: authorName,
+      date: date,
+      isSelected: isSelected ?? this.isSelected,
+    );
+  }
+
   @override
   int compareTo(GithubCommitModel other) {
     return date.compareTo(other.date);
