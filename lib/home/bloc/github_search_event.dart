@@ -12,3 +12,14 @@ class GithubSearchEventSearch extends GithubSearchEvent {
   @override
   List<Object> get props => [repositoryName];
 }
+
+class GithubSearchToggleCommit extends GithubSearchEvent {
+  const GithubSearchToggleCommit(this.sha);
+
+  final String sha;
+
+  @override
+  List<Object> get props => [
+        sha,
+      ];
+}

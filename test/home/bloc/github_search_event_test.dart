@@ -7,7 +7,7 @@ void main() {
   group('GithubSearchEvent', () {
     group('GithubSearchEventSearch', () {
       test('can be instantiated', () {
-        expect(GithubSearchEventSearch(''), isNotNull);
+        expect(GithubSearchEventSearch('not-important'), isNotNull);
       });
 
       test('supports value comparisons', () {
@@ -18,6 +18,23 @@ void main() {
         expect(
           GithubSearchEventSearch('value'),
           isNot(same(GithubSearchEventSearch('value'))),
+        );
+      });
+    });
+
+    group('GithubSearchToggleCommit', () {
+      test('can be instantiated', () {
+        expect(GithubSearchToggleCommit('not-important'), isNotNull);
+      });
+
+      test('supports value comparisons', () {
+        expect(
+          GithubSearchToggleCommit('sha'),
+          equals(GithubSearchToggleCommit('sha')),
+        );
+        expect(
+          GithubSearchToggleCommit('sha'),
+          isNot(same(GithubSearchToggleCommit('sha'))),
         );
       });
     });

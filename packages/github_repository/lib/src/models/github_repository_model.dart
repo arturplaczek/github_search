@@ -42,6 +42,16 @@ class GithubRepositoryModel extends Equatable {
   @_ListConverter()
   final List<GithubCommitModel> commits;
 
+  /// Returns a copy of the [GithubRepositoryModel].
+  GithubRepositoryModel copyWith({
+    List<GithubCommitModel>? commits,
+  }) {
+    return GithubRepositoryModel(
+      id: id,
+      commits: commits ?? this.commits,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,
