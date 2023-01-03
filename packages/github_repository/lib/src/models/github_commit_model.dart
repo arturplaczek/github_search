@@ -18,6 +18,7 @@ class GithubCommitModel extends Equatable
     required this.sha,
     required this.authorName,
     required this.date,
+    this.isSelected = false,
   });
 
   /// Creates a [GithubCommitModel] from [GithubCommitData].
@@ -49,6 +50,9 @@ class GithubCommitModel extends Equatable
   /// Date of the commit.
   final DateTime date;
 
+  /// Indicates whether the commit is selected.
+  final bool isSelected;
+
   @override
   int compareTo(GithubCommitModel other) {
     return date.compareTo(other.date);
@@ -60,5 +64,6 @@ class GithubCommitModel extends Equatable
         sha,
         authorName,
         date,
+        isSelected,
       ];
 }

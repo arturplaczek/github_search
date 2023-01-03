@@ -21,6 +21,7 @@ void main() {
           home: Scaffold(
             body: CommitWidget(
               commit: commit,
+              onTap: () {},
             ),
           ),
         ),
@@ -34,6 +35,30 @@ void main() {
         ),
         findsOneWidget,
       );
+    });
+
+    testWidgets('calls onTap', (tester) async {
+      var onTapCalled = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          home: Scaffold(
+            body: CommitWidget(
+              commit: commit,
+              onTap: () {
+                onTapCalled = true;
+              },
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('message'));
+
+      await tester.pumpAndSettle();
+
+      expect(onTapCalled, true);
     });
   });
 }
