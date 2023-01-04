@@ -9,11 +9,35 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockGithubNameBloc extends MockBloc<GithubNameEvent, GithubNameState>
-    implements GithubNameBloc {}
+    implements GithubNameBloc {
+  @override
+  GithubNameState get state => const GithubNameState();
+}
 
 class _MockGithubSearchBloc
     extends MockBloc<GithubSearchEvent, GithubSearchState>
-    implements GithubSearchBloc {}
+    implements GithubSearchBloc {
+  static final _githubCommitModel = GithubCommitModel(
+    message: 'message',
+    authorName: 'authorName',
+    sha: 'sha',
+    date: DateTime(2020),
+  );
+
+  static final _githubRepositoryModel = GithubRepositoryModel(
+    id: -1,
+    commits: <GithubCommitModel>[_githubCommitModel],
+  );
+
+  @override
+  GithubSearchState get state => GithubSearchState(
+        repository: _githubRepositoryModel,
+        cache: <String, GithubRepositoryModel>{
+          'repository-name': _githubRepositoryModel,
+        },
+        status: GithubSearchStatus.success,
+      );
+}
 
 class _MockStorage extends Mock implements Storage {}
 
