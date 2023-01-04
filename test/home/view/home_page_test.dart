@@ -1,33 +1,21 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repository/github_repository.dart';
 import 'package:github_search/home/home.dart';
 import 'package:github_search/l10n/l10n.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 
-// TODO(arturplaczek): refactor this as a extension and remove duplicated code
-class _MockStorage extends Mock implements Storage {}
-
-class _MockGithubRepository extends Mock implements GithubRepository {}
+import '../../helpers.dart';
 
 class _MockGithubSearchBloc
     extends MockBloc<GithubSearchEvent, GithubSearchState>
     implements GithubSearchBloc {}
 
 void main() {
-  late Storage storage;
   late GithubSearchBloc bloc;
 
   setUp(() {
-    storage = _MockStorage();
-    when(
-      () => storage.write(any(), any<dynamic>()),
-    ).thenAnswer((_) async {});
-    HydratedBloc.storage = storage;
-
     bloc = _MockGithubSearchBloc();
     when(() => bloc.state).thenReturn(const GithubSearchState());
     when(() => bloc.stream).thenAnswer(
@@ -57,7 +45,7 @@ void main() {
     testWidgets('calls onComplete on GithubNameTextfield', (tester) async {
       await tester.pumpSubject(
         const HomeView(),
-        bloc: bloc,
+        githubSearchBloc: bloc,
       );
 
       const repositoryName = 'test/test';
@@ -86,7 +74,7 @@ void main() {
 
       await tester.pumpSubject(
         const HomeViewBody(),
-        bloc: bloc,
+        githubSearchBloc: bloc,
       );
 
       await tester.pump(kThemeAnimationDuration);
@@ -106,7 +94,7 @@ void main() {
 
       await tester.pumpSubject(
         const HomeViewBody(),
-        bloc: bloc,
+        githubSearchBloc: bloc,
       );
 
       await tester.pump();
@@ -139,7 +127,7 @@ void main() {
 
       await tester.pumpSubject(
         const HomeViewBody(),
-        bloc: bloc,
+        githubSearchBloc: bloc,
       );
 
       await tester.pump();
@@ -148,23 +136,4 @@ void main() {
       expect(find.byType(CommitWidget), findsOneWidget);
     });
   });
-}
-
-extension on WidgetTester {
-  Future<void> pumpSubject(Widget widget, {GithubSearchBloc? bloc}) async {
-    await pumpWidget(
-      RepositoryProvider<GithubRepository>(
-        create: (_) => _MockGithubRepository(),
-        child: MaterialApp(
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          home: Scaffold(
-            body: BlocProvider<GithubSearchBloc>(
-              create: (_) => bloc ?? _MockGithubSearchBloc(),
-              child: widget,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }

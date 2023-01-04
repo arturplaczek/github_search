@@ -1,29 +1,19 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_search/home/home.dart';
 import 'package:github_search/l10n/l10n.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
-
-class _MockStorage extends Mock implements Storage {}
+import '../../helpers.dart';
 
 class _MockGithubNameBloc extends MockBloc<GithubNameEvent, GithubNameState>
     implements GithubNameBloc {}
 
 void main() {
-  late Storage storage;
   late GithubNameBloc bloc;
   const state = GithubNameState();
 
   setUp(() {
-    storage = _MockStorage();
-    when(
-      () => storage.write(any(), any<dynamic>()),
-    ).thenAnswer((_) async {});
-    HydratedBloc.storage = storage;
-
     bloc = _MockGithubNameBloc();
 
     when(() => bloc.state).thenReturn(state);
@@ -34,7 +24,7 @@ void main() {
 
   group('GithubNameTextfield', () {
     testWidgets('renders GithubNameTextfieldView', (tester) async {
-      await tester.pumpWidget(
+      await tester.pumpSubject(
         MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           home: Scaffold(
@@ -67,7 +57,7 @@ void main() {
             isCalled = true;
           },
         ),
-        bloc: bloc,
+        githubNameBloc: bloc,
       );
 
       await tester.pumpAndSettle();
@@ -82,7 +72,7 @@ void main() {
     testWidgets('calls GithubNameChanged on text changed', (tester) async {
       await tester.pumpSubject(
         const GithubNameEditText(),
-        bloc: bloc,
+        githubNameBloc: bloc,
       );
 
       await tester.pumpAndSettle();
@@ -94,7 +84,7 @@ void main() {
     testWidgets('calls GithubNameChanged on submit', (tester) async {
       await tester.pumpSubject(
         const GithubNameEditText(),
-        bloc: bloc,
+        githubNameBloc: bloc,
       );
 
       await tester.pumpAndSettle();
@@ -116,7 +106,7 @@ void main() {
       );
       await tester.pumpSubject(
         const GithubNameEditText(),
-        bloc: bloc,
+        githubNameBloc: bloc,
       );
 
       await tester.pumpAndSettle();
@@ -135,7 +125,7 @@ void main() {
     testWidgets('calls GithubNameSubmitted onPressed', (tester) async {
       await tester.pumpSubject(
         const GithubNameSubmitIcon(),
-        bloc: bloc,
+        githubNameBloc: bloc,
       );
 
       await tester.pumpAndSettle();
@@ -152,7 +142,7 @@ void main() {
 
       await tester.pumpSubject(
         const GithubNameErrorText(),
-        bloc: bloc,
+        githubNameBloc: bloc,
       );
 
       final l10n = tester.element(find.byType(Scaffold)).l10n;
@@ -166,29 +156,10 @@ void main() {
 
       await tester.pumpSubject(
         const GithubNameErrorText(),
-        bloc: bloc,
+        githubNameBloc: bloc,
       );
 
       expect(find.byType(SizedBox), findsOneWidget);
     });
   });
-}
-
-extension on WidgetTester {
-  Future<void> pumpSubject(
-    Widget widget, {
-    required GithubNameBloc bloc,
-  }) async {
-    await pumpWidget(
-      BlocProvider<GithubNameBloc>.value(
-        value: bloc,
-        child: MaterialApp(
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          home: Scaffold(
-            body: widget,
-          ),
-        ),
-      ),
-    );
-  }
 }
