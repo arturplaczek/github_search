@@ -54,6 +54,19 @@ class GithubSearchState extends Equatable {
       'status': status.name,
     };
   }
+
+  String getSelectedCommitsMessage() {
+    return (repository?.commits ?? [])
+        .where((commit) => commit.isSelected)
+        .map(
+          (commit) => '''
+sha: ${commit.sha},
+author: ${commit.authorName},
+date: ${commit.formattedDate},
+message: ${commit.message}''',
+        )
+        .join('\n');
+  }
 }
 
 enum GithubSearchStatus { initial, loading, success, failure }

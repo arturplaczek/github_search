@@ -51,5 +51,35 @@ void main() {
 
       expect(githubSearchStateFromJson, equals(githubSearchState));
     });
+
+    test('produce correct share message', () {
+      final commit = GithubCommitModel(
+        message: 'message',
+        authorName: 'authorName',
+        sha: 'sha',
+        date: DateTime(2020),
+        isSelected: true,
+      );
+      final githubRepositoryModel = GithubRepositoryModel(
+        id: -1,
+        commits: <GithubCommitModel>[commit],
+      );
+
+      final githubSearchState = GithubSearchState(
+        repository: githubRepositoryModel,
+        status: GithubSearchStatus.success,
+      );
+
+      final message = githubSearchState.getSelectedCommitsMessage();
+
+      expect(
+        message,
+        '''
+sha: ${commit.sha},
+author: ${commit.authorName},
+date: ${commit.formattedDate},
+message: ${commit.message}''',
+      );
+    });
   });
 }
