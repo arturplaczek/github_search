@@ -9,17 +9,18 @@ class CommitList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) {
-        return const Divider();
-      },
-      shrinkWrap: true,
-      itemCount: commits.length,
-      itemBuilder: (context, index) {
-        return CommitWidget(
-          commit: commits[index],
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: commits.length,
+        itemBuilder: (context, index) {
+          final commit = commits[index];
+          return CommitWidget(
+            sha: commit.sha,
+          );
+        },
+      ),
     );
   }
 }

@@ -1,9 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repository/github_repository.dart';
 import 'package:github_search/home/home.dart';
-import 'package:github_search/l10n/l10n.dart';
 import 'package:intl/intl.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../helpers.dart';
+
+class _MockGithubSearchBloc
+    extends MockBloc<GithubSearchEvent, GithubSearchState>
+    implements GithubSearchBloc {}
 
 void main() {
   final commit = GithubCommitModel(
@@ -15,17 +21,10 @@ void main() {
 
   group('CoomitWidget', () {
     testWidgets('renders correctly', (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          home: Scaffold(
-            body: CommitWidget(
-              commit: commit,
-              onTap: () {},
-            ),
-          ),
-        ),
+      await tester.pumpSubject(
+        CommitWidget(sha: commit.sha),
       );
+
       expect(find.text('message'), findsOneWidget);
       expect(find.text('authorName'), findsOneWidget);
       expect(find.text('SHA: sha'), findsOneWidget);
@@ -38,27 +37,37 @@ void main() {
     });
 
     testWidgets('calls onTap', (tester) async {
-      var onTapCalled = false;
-
-      await tester.pumpWidget(
-        MaterialApp(
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          home: Scaffold(
-            body: CommitWidget(
-              commit: commit,
-              onTap: () {
-                onTapCalled = true;
-              },
-            ),
+      final githubSearchBloc = _MockGithubSearchBloc();
+      when(
+        () => githubSearchBloc.state,
+      ).thenReturn(
+        GithubSearchState(
+          repository: GithubRepositoryModel(
+            id: -1,
+            commits: <GithubCommitModel>[commit],
           ),
+          cache: <String, GithubRepositoryModel>{
+            'repository-name': GithubRepositoryModel(
+              id: -1,
+              commits: <GithubCommitModel>[commit],
+            ),
+          },
+          status: GithubSearchStatus.success,
         ),
+      );
+
+      await tester.pumpSubject(
+        CommitWidget(sha: commit.sha),
+        githubSearchBloc: githubSearchBloc,
       );
 
       await tester.tap(find.text('message'));
 
       await tester.pumpAndSettle();
 
-      expect(onTapCalled, true);
+      verify(
+        () => githubSearchBloc.add(GithubSearchToggleCommit(sha: commit.sha)),
+      ).called(1);
     });
   });
 }

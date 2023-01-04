@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repository/github_repository.dart';
 import 'package:github_search/home/home.dart';
-import 'package:github_search/l10n/l10n.dart';
+
+import '../../helpers.dart';
 
 void main() {
   final commit = GithubCommitModel(
@@ -14,17 +14,14 @@ void main() {
 
   group('CommitList', () {
     testWidgets('renders correctly', (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          home: Scaffold(
-            body: CommitList(
-              commits: [commit, commit],
-            ),
-          ),
+      await tester.pumpSubject(
+        CommitList(
+          commits: [
+            commit,
+          ],
         ),
       );
-      expect(find.byType(CommitWidget), findsNWidgets(2));
+      expect(find.byType(CommitWidget), findsNWidgets(1));
     });
   });
 }
