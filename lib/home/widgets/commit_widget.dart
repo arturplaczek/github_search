@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_repository/github_repository.dart';
 import 'package:github_search/home/home.dart';
-import 'package:intl/intl.dart';
 
 class CommitWidget extends StatelessWidget {
   const CommitWidget({
@@ -60,7 +59,7 @@ class CommitWidget extends StatelessWidget {
                           style: textTheme,
                         ),
                         Text(
-                          DateFormat('dd/MM/yyyy hh:mm:ss').format(commit.date),
+                          commit.formattedDate,
                           style: textTheme,
                         )
                       ],
