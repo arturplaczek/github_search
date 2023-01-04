@@ -24,17 +24,17 @@ void main() {
 
     group('GithubSearchToggleCommit', () {
       test('can be instantiated', () {
-        expect(GithubSearchToggleCommit('not-important'), isNotNull);
+        expect(GithubSearchToggleCommit(sha: 'not-important'), isNotNull);
       });
 
       test('supports value comparisons', () {
         expect(
-          GithubSearchToggleCommit('sha'),
-          equals(GithubSearchToggleCommit('sha')),
+          GithubSearchToggleCommit(sha: 'sha'),
+          equals(GithubSearchToggleCommit(sha: 'sha')),
         );
         expect(
-          GithubSearchToggleCommit('sha'),
-          isNot(same(GithubSearchToggleCommit('sha'))),
+          GithubSearchToggleCommit(sha: 'sha'),
+          isNot(same(GithubSearchToggleCommit(sha: 'sha'))),
         );
       });
     });

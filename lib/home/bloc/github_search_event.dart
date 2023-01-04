@@ -14,7 +14,7 @@ class GithubSearchEventSearch extends GithubSearchEvent {
 }
 
 class GithubSearchToggleCommit extends GithubSearchEvent {
-  const GithubSearchToggleCommit(this.sha);
+  const GithubSearchToggleCommit({required this.sha});
 
   final String sha;
 
