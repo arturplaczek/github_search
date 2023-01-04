@@ -76,7 +76,9 @@ class GithubNameEditText extends StatelessWidget {
         text: state.githubName,
       ),
       onSelected: (selection) {
-        context.read<GithubNameBloc>().add(GithubNameChanged(selection));
+        context.read<GithubNameBloc>()
+          ..add(GithubNameChanged(selection))
+          ..add(const GithubNameSubmitted());
       },
       fieldViewBuilder: (
         BuildContext context,
