@@ -8,24 +8,21 @@
       "name": "github_search",
       "request": "launch",
       "type": "dart",
-      "program": "lib/main.dart",
-      "args": ["-d", "chrome"]
+      "program": "lib/main.dart"
     },
     {
       "name": "github_search (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
-      "program": "lib/main.dart",
-      "args": ["-d", "chrome"]
+      "program": "lib/main.dart"
     },
     {
       "name": "github_search (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "program": "lib/main.dart",
-      "args": ["-d", "chrome"]
+      "program": "lib/main.dart"
     }
   ]
 }
