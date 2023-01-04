@@ -161,7 +161,7 @@ void main() {
           status: GithubSearchStatus.success,
         ),
         act: (bloc) {
-          bloc.add(const GithubSearchToggleCommit('sha'));
+          bloc.add(const GithubSearchToggleCommit(sha: 'sha'));
         },
         expect: () => [
           isA<GithubSearchState>().having(
