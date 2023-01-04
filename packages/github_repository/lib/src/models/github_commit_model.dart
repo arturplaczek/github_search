@@ -1,5 +1,6 @@
 import 'package:api_client/api_client.dart';
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'github_commit_model.g.dart';
@@ -52,6 +53,9 @@ class GithubCommitModel extends Equatable
 
   /// Indicates whether the commit is selected.
   final bool isSelected;
+
+  /// Returns formatted date in the format 'dd/MM/yyyy hh:mm:ss'.
+  String get formattedDate => DateFormat('dd/MM/yyyy hh:mm:ss').format(date);
 
   /// Returns a copy of the [GithubCommitModel].
   GithubCommitModel copyWith({

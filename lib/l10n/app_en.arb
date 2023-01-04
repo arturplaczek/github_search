@@ -22,5 +22,9 @@
   "errorText": "Something went wrong!",
   "@errorText": {
     "description": "Text displayed on error"
+  },
+  "send": "Send",
+  "@send": {
+    "description": "Text displayed on send button"
   }
 }

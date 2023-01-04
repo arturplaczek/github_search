@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repository/github_repository.dart';
 import 'package:github_search/home/home.dart';
-import 'package:intl/intl.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../helpers.dart';
@@ -28,12 +27,7 @@ void main() {
       expect(find.text('message'), findsOneWidget);
       expect(find.text('authorName'), findsOneWidget);
       expect(find.text('SHA: sha'), findsOneWidget);
-      expect(
-        find.text(
-          DateFormat('dd/MM/yyyy hh:mm:ss').format(commit.date),
-        ),
-        findsOneWidget,
-      );
+      expect(find.text(commit.formattedDate), findsOneWidget);
     });
 
     testWidgets('calls onTap', (tester) async {

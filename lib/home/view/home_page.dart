@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_repository/github_repository.dart';
 import 'package:github_search/home/home.dart';
 import 'package:github_search/l10n/l10n.dart';
+import 'package:share_plus/share_plus.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -32,24 +33,27 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.appTitle),
-      ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: GithubNameTextfield(
-              onComplete: (githubName) {
-                context.read<GithubSearchBloc>().add(
-                      GithubSearchEventSearch(githubName),
-                    );
-              },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.appTitle),
+        ),
+        body: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: GithubNameTextfield(
+                onComplete: (githubName) {
+                  context.read<GithubSearchBloc>().add(
+                        GithubSearchEventSearch(githubName),
+                      );
+                },
+              ),
             ),
-          ),
-          const Expanded(child: HomeViewBody())
-        ],
+            const Expanded(child: HomeViewBody()),
+            const ShareButton(),
+          ],
+        ),
       ),
     );
   }
@@ -80,7 +84,6 @@ class HomeViewBody extends StatelessWidget {
               Expanded(
                 child: CommitList(commits: state.repository!.commits),
               ),
-              const SizedBox(height: 10),
             ],
           );
         } else {
@@ -88,6 +91,37 @@ class HomeViewBody extends StatelessWidget {
             child: Text(l10n.githubSearchText),
           );
         }
+      },
+    );
+  }
+}
+
+@visibleForTesting
+class ShareButton extends StatelessWidget {
+  const ShareButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<GithubSearchBloc, GithubSearchState, bool>(
+      selector: (state) {
+        return (state.repository?.commits ?? [])
+            .where((commit) => commit.isSelected)
+            .isNotEmpty;
+      },
+      builder: (context, hasSlection) {
+        if (!hasSlection) {
+          return const SizedBox.shrink();
+        }
+        return TextButton(
+          child: Text(context.l10n.send),
+          onPressed: () {
+            final selectedCommits = context
+                .read<GithubSearchBloc>()
+                .state
+                .getSelectedCommitsMessage();
+            Share.share(selectedCommits);
+          },
+        );
       },
     );
   }

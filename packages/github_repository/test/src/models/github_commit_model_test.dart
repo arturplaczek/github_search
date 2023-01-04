@@ -16,6 +16,7 @@ void main() {
       expect(model.authorName, equals('authorName'));
       expect(model.sha, equals('sha'));
       expect(model.date, equals(DateTime(2020)));
+      expect(model.formattedDate, equals('01/01/2020 12:00:00'));
     });
 
     test('can be initialize from data', () {
