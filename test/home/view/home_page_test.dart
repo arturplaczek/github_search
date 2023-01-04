@@ -7,7 +7,6 @@ import 'package:github_search/home/home.dart';
 import 'package:github_search/l10n/l10n.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:share_plus_platform_interface/method_channel/method_channel_share.dart';
-import 'package:share_plus_platform_interface/share_plus_platform_interface.dart';
 
 import '../../helpers.dart';
 
@@ -21,12 +20,12 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late GithubSearchBloc bloc;
-  late SharePlatform sharePlatform;
+  // late SharePlatform sharePlatform;
   late _MockMethodChannel mockChannel;
 
   setUp(() {
     bloc = _MockGithubSearchBloc();
-    sharePlatform = SharePlatform();
+    // sharePlatform = SharePlatform();
 
     when(() => bloc.state).thenReturn(const GithubSearchState());
     when(() => bloc.stream).thenAnswer(

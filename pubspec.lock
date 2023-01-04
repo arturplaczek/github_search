@@ -428,7 +428,7 @@ packages:
     source: hosted
     version: "6.3.0"
   share_plus_platform_interface:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: share_plus_platform_interface
       url: "https://pub.dartlang.org"
