@@ -1,12 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repository/github_repository.dart';
 import 'package:github_search/home/home.dart';
 import 'package:github_search/l10n/l10n.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:share_plus_platform_interface/method_channel/method_channel_share.dart';
 
 import '../../helpers.dart';
 
@@ -14,30 +12,18 @@ class _MockGithubSearchBloc
     extends MockBloc<GithubSearchEvent, GithubSearchState>
     implements GithubSearchBloc {}
 
-class _MockMethodChannel extends Mock implements MethodChannel {}
-
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late GithubSearchBloc bloc;
-  // late SharePlatform sharePlatform;
-  late _MockMethodChannel mockChannel;
 
   setUp(() {
     bloc = _MockGithubSearchBloc();
-    // sharePlatform = SharePlatform();
 
     when(() => bloc.state).thenReturn(const GithubSearchState());
     when(() => bloc.stream).thenAnswer(
       (_) => Stream.value(const GithubSearchState()),
     );
-
-    mockChannel = _MockMethodChannel();
-    TestDefaultBinaryMessengerBinding.instance!.defaultBinaryMessenger
-        .setMockMethodCallHandler(MethodChannelShare.channel, (call) async {
-      await mockChannel.invokeMethod<void>(call.method, call.arguments);
-      return Future(() => null);
-    });
   });
 
   group('HomePage', () {
@@ -241,14 +227,6 @@ void main() {
       expect(find.byType(TextButton), findsOneWidget);
 
       await tester.tap(find.byType(TextButton));
-
-      // TODO: fix this test
-      // verify(() => sharePlatform.share(any())).called(1);
-      // verify(
-      //   () => mockChannel.invokeMethod<void>('share', <String, dynamic>{
-      //     'text': state.getSelectedCommitsMessage(),
-      //   }),
-      // );
     });
   });
 }
