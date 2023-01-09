@@ -44,13 +44,13 @@ HydratedBloc works strangely on the web version. While the application is runnin
 ## List of features & overview:
 
 
-When the repository name is provided, the app fetches and displays the following information about it using GitHub API:
-- [ ] repository ID,
-- [ ] the list of the commits in the repository:
-    - [ ] each commit should be described by: message, SHA value, author’s name;
-    - [ ] the list should be sorted by date so that the latest commits are at the top (just like on GitHub).
-- [ ] The app caches the previously used repositories data.
-    - [ ] The user can access the history of last used repositories.
+When the repository name is provided, the app fetches ~~and displays~~ the following information about it using GitHub API:
+- [x] repository ID,
+- [x] the list of the commits in the repository:
+    - [x] each commit should be described by: message, SHA value, author’s name;
+    - [x] the list should be sorted by date so that the latest commits are at the top (just like on GitHub).
+- [x] The app caches the previously used repositories data.
+    - [x] The user can access the history of last used repositories.
         - [ ] Using the history, the user can open the repository information again in the same way as if he typed the repository name manually again (see: 1.)
     - [ ] When the app is offline, the user should still be able to see the previously fetched repository information.
 - [ ] User can send the selected commits’ data (message, SHA value, author’s name) using 3rd party application installed on the phone (e.g. an e-mail client or Facebook Messenger) in the following way:
