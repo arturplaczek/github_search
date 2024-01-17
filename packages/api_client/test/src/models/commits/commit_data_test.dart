@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CommitData', () {
-    test('can be inistalized', () {
+    test('can be initialized', () {
       expect(() => const CommitData(), returnsNormally);
     });
 

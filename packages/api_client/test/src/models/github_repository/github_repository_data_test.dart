@@ -5,7 +5,7 @@ import '../../samples/github_repository_data_sample.dart';
 
 void main() {
   group('GithubRepositoryData', () {
-    test('can be inistalized', () {
+    test('can be initialized', () {
       expect(
         () => const GithubRepositoryData(id: 0),
         returnsNormally,

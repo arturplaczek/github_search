@@ -1,2 +1,2 @@
 export 'commits/commits.dart';
-export 'repo/repo.dart';
+export 'github_repository/github_repository.dart';

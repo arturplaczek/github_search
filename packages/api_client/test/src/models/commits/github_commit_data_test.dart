@@ -5,7 +5,7 @@ import '../../samples/github_commit_data_sample.dart';
 
 void main() {
   group('GithubCommitData', () {
-    test('can be inistalized', () {
+    test('can be initialized', () {
       expect(
         () => const GithubCommitData(
           sha: 'sha',
