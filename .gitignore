@@ -58,10 +58,11 @@ build/
 linked_*.ds
 unlinked.ds
 unlinked_spec.ds
-.fvm/
+.fvm/flutter_sdk
 web/*.js.deps
 web/*.js.map
 .flutter-plugins-dependencies
+.flutter-plugins
 
 # Android related
 **/android/**/gradle-wrapper.jar
