@@ -6,18 +6,18 @@ const githubCommitDataSample = <String, dynamic>{
     'author': {
       'name': 'arturplaczek',
       'email': 'arturp1989@gmail.com',
-      'date': '2022-12-28T10:49:58Z'
+      'date': '2022-12-28T10:49:58Z',
     },
     'committer': {
       'name': 'arturplaczek',
       'email': 'arturp1989@gmail.com',
-      'date': '2022-12-28T10:49:58Z'
+      'date': '2022-12-28T10:49:58Z',
     },
     'message': 'chore: initial commit',
     'tree': {
       'sha': 'e18be75630dc0ec734ded5ede1f6ca866d173443',
       'url':
-          'https://api.github.com/repos/arturplaczek/github_search/git/trees/e18be75630dc0ec734ded5ede1f6ca866d173443'
+          'https://api.github.com/repos/arturplaczek/github_search/git/trees/e18be75630dc0ec734ded5ede1f6ca866d173443',
     },
     'url':
         'https://api.github.com/repos/arturplaczek/github_search/git/commits/cf7984465ae97a1dcf292f80025c2674f48a79b3',
@@ -26,8 +26,8 @@ const githubCommitDataSample = <String, dynamic>{
       'verified': false,
       'reason': 'unsigned',
       'signature': null,
-      'payload': null
-    }
+      'payload': null,
+    },
   },
   'url':
       'https://api.github.com/repos/arturplaczek/github_search/commits/cf7984465ae97a1dcf292f80025c2674f48a79b3',
@@ -57,7 +57,7 @@ const githubCommitDataSample = <String, dynamic>{
     'received_events_url':
         'https://api.github.com/users/arturplaczek/received_events',
     'type': 'User',
-    'site_admin': false
+    'site_admin': false,
   },
   'committer': {
     'login': 'arturplaczek',
@@ -81,7 +81,7 @@ const githubCommitDataSample = <String, dynamic>{
     'received_events_url':
         'https://api.github.com/users/arturplaczek/received_events',
     'type': 'User',
-    'site_admin': false
+    'site_admin': false,
   },
   'parents': [
     {
@@ -89,7 +89,7 @@ const githubCommitDataSample = <String, dynamic>{
       'url':
           'https://api.github.com/repos/arturplaczek/github_search/commits/935368adeb8bbcdf4fb101d698dc01f7d11b14f9',
       'html_url':
-          'https://github.com/arturplaczek/github_search/commit/935368adeb8bbcdf4fb101d698dc01f7d11b14f9'
+          'https://github.com/arturplaczek/github_search/commit/935368adeb8bbcdf4fb101d698dc01f7d11b14f9',
     }
-  ]
+  ],
 };

@@ -61,7 +61,7 @@ class CommitWidget extends StatelessWidget {
                         Text(
                           commit.formattedDate,
                           style: textTheme,
-                        )
+                        ),
                       ],
                     ),
                     const Divider(),

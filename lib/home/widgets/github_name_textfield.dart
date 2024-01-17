@@ -37,17 +37,17 @@ class GithubNameTextfieldView extends StatelessWidget {
           context.read<GithubNameBloc>().add(const GithubNameReset());
         }
       },
-      child: Column(
+      child: const Column(
         children: [
           Row(
-            children: const [
+            children: [
               Expanded(
                 child: GithubNameEditText(),
               ),
               GithubNameSubmitIcon(),
             ],
           ),
-          const GithubNameErrorText(),
+          GithubNameErrorText(),
         ],
       ),
     );

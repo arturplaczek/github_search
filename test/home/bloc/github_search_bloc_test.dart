@@ -102,7 +102,7 @@ void main() {
               id: -1,
               commits: <GithubCommitModel>[
                 githubCommitModel,
-                githubCommitModel
+                githubCommitModel,
               ],
             ),
           );

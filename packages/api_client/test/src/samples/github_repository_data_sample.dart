@@ -26,7 +26,7 @@ const githubRepositoryDataSample = <String, dynamic>{
     'received_events_url':
         'https://api.github.com/users/arturplaczek/received_events',
     'type': 'User',
-    'site_admin': false
+    'site_admin': false,
   },
   'html_url': 'https://github.com/arturplaczek/github_search',
   'description': 'A simple application to search the github repository',
@@ -135,5 +135,5 @@ const githubRepositoryDataSample = <String, dynamic>{
   'default_branch': 'main',
   'temp_clone_token': null,
   'network_count': 0,
-  'subscribers_count': 1
+  'subscribers_count': 1,
 };

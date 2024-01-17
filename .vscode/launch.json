@@ -22,7 +22,8 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "program": "lib/main.dart"
+      "program": "lib/main.dart",
+      "toolArgs": ["--release"]
     }
   ]
 }
