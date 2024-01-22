@@ -1,12 +1,22 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'github_name_event.dart';
 part 'github_name_state.dart';
 
+EventTransformer<Event> _debounce<Event>() {
+  return (events, mapper) => events
+      .debounceTime(const Duration(milliseconds: 300))
+      .asyncExpand(mapper);
+}
+
 class GithubNameBloc extends HydratedBloc<GithubNameEvent, GithubNameState> {
   GithubNameBloc() : super(const GithubNameState()) {
-    on<GithubNameChanged>(_onGithubNameChanged);
+    on<GithubNameChanged>(
+      _onGithubNameChanged,
+      transformer: _debounce(),
+    );
     on<GithubNameSubmitted>(_onGithubNameSubmitted);
     on<GithubNameReset>(_onGithubNameReset);
   }
