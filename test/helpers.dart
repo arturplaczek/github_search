@@ -31,7 +31,7 @@ class _MockGithubSearchBloc
 
   @override
   GithubSearchState get state => GithubSearchState(
-        repository: _githubRepositoryModel,
+        githubRepository: _githubRepositoryModel,
         cache: <String, GithubRepositoryModel>{
           'repository-name': _githubRepositoryModel,
         },

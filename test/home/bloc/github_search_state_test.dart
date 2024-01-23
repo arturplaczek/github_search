@@ -39,7 +39,7 @@ void main() {
       );
 
       final githubSearchState = GithubSearchState(
-        repository: githubRepositoryModel,
+        githubRepository: githubRepositoryModel,
         cache: <String, GithubRepositoryModel>{
           'repository-name': githubRepositoryModel,
         },
@@ -66,7 +66,7 @@ void main() {
       );
 
       final githubSearchState = GithubSearchState(
-        repository: githubRepositoryModel,
+        githubRepository: githubRepositoryModel,
         status: GithubSearchStatus.success,
       );
 

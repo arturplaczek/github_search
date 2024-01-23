@@ -8,8 +8,6 @@ part 'github_commit_model.g.dart';
 /// {@template github_commit_model}
 /// Model for the github commit.
 /// {@endtemplate}
-///
-
 @JsonSerializable()
 class GithubCommitModel extends Equatable
     implements Comparable<GithubCommitModel> {

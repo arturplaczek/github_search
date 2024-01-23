@@ -2,15 +2,15 @@ part of 'github_search_bloc.dart';
 
 class GithubSearchState extends Equatable {
   const GithubSearchState({
-    this.repository,
+    this.githubRepository,
     this.cache = const {},
     this.status = GithubSearchStatus.initial,
   });
 
   factory GithubSearchState.fromJson(Map<String, dynamic> json) {
     return GithubSearchState(
-      repository: GithubRepositoryModel.fromJson(
-        json['repository'] as Map<String, dynamic>,
+      githubRepository: GithubRepositoryModel.fromJson(
+        json['githubRepository'] as Map<String, dynamic>,
       ),
       cache: (json['cache'] as Map).map(
         (key, value) => MapEntry(
@@ -22,24 +22,24 @@ class GithubSearchState extends Equatable {
     );
   }
 
-  final GithubRepositoryModel? repository;
+  final GithubRepositoryModel? githubRepository;
   final Map<String, GithubRepositoryModel> cache;
   final GithubSearchStatus status;
 
   @override
   List<Object?> get props => [
-        repository,
+        githubRepository,
         cache,
         status,
       ];
 
   GithubSearchState copyWith({
-    GithubRepositoryModel? repository,
+    GithubRepositoryModel? githubRepository,
     Map<String, GithubRepositoryModel>? cache,
     GithubSearchStatus? status,
   }) {
     return GithubSearchState(
-      repository: repository ?? this.repository,
+      githubRepository: githubRepository ?? this.githubRepository,
       cache: cache ?? this.cache,
       status: status ?? this.status,
     );
@@ -47,7 +47,7 @@ class GithubSearchState extends Equatable {
 
   Map<String, dynamic>? toJson() {
     return {
-      'repository': repository?.toJson(),
+      'githubRepository': githubRepository?.toJson(),
       'cache': cache.map(
         (key, value) => MapEntry(key, value.toJson()),
       ),
@@ -56,7 +56,7 @@ class GithubSearchState extends Equatable {
   }
 
   String getSelectedCommitsMessage() {
-    return (repository?.commits ?? [])
+    return (githubRepository?.commits ?? [])
         .where((commit) => commit.isSelected)
         .map(
           (commit) => '''

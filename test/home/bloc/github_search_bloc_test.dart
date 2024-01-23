@@ -27,7 +27,7 @@ void main() {
   );
 
   final githubSearchState = GithubSearchState(
-    repository: githubRepositoryModel,
+    githubRepository: githubRepositoryModel,
     cache: <String, GithubRepositoryModel>{
       'repository-name': githubRepositoryModel,
     },
@@ -73,7 +73,7 @@ void main() {
             status: GithubSearchStatus.loading,
           ),
           GithubSearchState(
-            repository: githubRepositoryModel,
+            githubRepository: githubRepositoryModel,
             cache: {repositoryName: githubRepositoryModel},
             status: GithubSearchStatus.success,
           ),
@@ -92,7 +92,7 @@ void main() {
         'returns from cache and update repository in cache',
         build: () => GithubSearchBloc(githubRepository: githubRepository),
         seed: () => GithubSearchState(
-          repository: githubRepositoryModel,
+          githubRepository: githubRepositoryModel,
           cache: {repositoryName: githubRepositoryModel},
           status: GithubSearchStatus.success,
         ),
@@ -111,17 +111,17 @@ void main() {
         },
         expect: () => [
           GithubSearchState(
-            repository: githubRepositoryModel,
+            githubRepository: githubRepositoryModel,
             cache: {repositoryName: githubRepositoryModel},
             status: GithubSearchStatus.loading,
           ),
           GithubSearchState(
-            repository: githubRepositoryModel,
+            githubRepository: githubRepositoryModel,
             cache: {repositoryName: githubRepositoryModel},
             status: GithubSearchStatus.success,
           ),
           GithubSearchState(
-            repository: githubRepositoryModel2,
+            githubRepository: githubRepositoryModel2,
             cache: {repositoryName: githubRepositoryModel2},
             status: GithubSearchStatus.success,
           ),
@@ -154,7 +154,7 @@ void main() {
         'toggles selection on commit',
         build: () => GithubSearchBloc(githubRepository: githubRepository),
         seed: () => GithubSearchState(
-          repository: githubRepositoryModel,
+          githubRepository: githubRepositoryModel,
           cache: <String, GithubRepositoryModel>{
             'repository-name': githubRepositoryModel,
           },
@@ -165,7 +165,7 @@ void main() {
         },
         expect: () => [
           isA<GithubSearchState>().having(
-            (state) => state.repository!.commits.firstWhere(
+            (state) => state.githubRepository!.commits.firstWhere(
               (commit) => commit.isSelected,
             ),
             'has an element with the selected commit',

@@ -26,23 +26,23 @@ class GithubSearchBloc
     if (state.cache.containsKey(event.repositoryName)) {
       emit(
         state.copyWith(
-          repository: state.cache[event.repositoryName],
+          githubRepository: state.cache[event.repositoryName],
           status: GithubSearchStatus.success,
         ),
       );
     }
 
     try {
-      final repository = await _githubRepository.getGithubRepository(
+      final githubRepository = await _githubRepository.getGithubRepository(
         event.repositoryName,
       );
 
       emit(
         state.copyWith(
-          repository: repository,
+          githubRepository: githubRepository,
           cache: {
             ...state.cache,
-            event.repositoryName: repository,
+            event.repositoryName: githubRepository,
           },
           status: GithubSearchStatus.success,
         ),
@@ -56,11 +56,11 @@ class GithubSearchBloc
     GithubSearchToggleCommit event,
     Emitter<GithubSearchState> emit,
   ) {
-    if (state.repository == null) {
+    if (state.githubRepository == null) {
       return;
     }
 
-    final commits = state.repository!.commits.map((commit) {
+    final commits = state.githubRepository!.commits.map((commit) {
       if (commit.sha == event.sha) {
         return commit.copyWith(isSelected: !commit.isSelected);
       }
@@ -70,7 +70,7 @@ class GithubSearchBloc
 
     emit(
       state.copyWith(
-        repository: state.repository!.copyWith(commits: commits),
+        githubRepository: state.githubRepository!.copyWith(commits: commits),
       ),
     );
   }
