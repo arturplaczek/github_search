@@ -9,5 +9,8 @@ export 'commit_list_view_failure.dart';
 export 'commit_list_view_initial.dart';
 export 'commit_list_view_loading.dart';
 export 'commit_list_view_success.dart';
+export 'github_name_edit_text.dart';
+export 'github_name_error_text.dart';
+export 'github_name_submit_icon.dart';
 export 'github_name_textfield.dart';
 export 'share_button.dart';
