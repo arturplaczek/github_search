@@ -53,18 +53,8 @@ class GithubNameBloc extends HydratedBloc<GithubNameEvent, GithubNameState> {
     );
   }
 
-  // TODO(arturplaczek): find correct RegExp
-  // and use instead of validateGithubName
-  // RegExp githubNameRegExp = RegExp('/([w,-,_]+)/([w,-,_]+)/i');
-  bool validateGithubName(String githubName) {
-    if (githubName.isEmpty || !githubName.contains('/')) {
-      return false;
-    } else {
-      final owner = githubName.split('/')[0];
-      final repository = githubName.split('/')[1];
-      return owner.isNotEmpty && repository.isNotEmpty;
-    }
-  }
+  bool validateGithubName(String githubName) =>
+      RegExp(r'^(.+?)/(.+?)$').hasMatch(githubName);
 
   Future<void> _onGithubNameReset(
     GithubNameReset event,
