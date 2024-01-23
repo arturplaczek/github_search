@@ -19,7 +19,7 @@ class ShareButton extends StatelessWidget {
         if (!hasSelection) {
           return const SizedBox.shrink();
         }
-        return TextButton(
+        return FloatingActionButton(
           child: Text(context.l10n.send),
           onPressed: () {
             final selectedCommits = context
