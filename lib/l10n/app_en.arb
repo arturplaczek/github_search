@@ -26,5 +26,15 @@
   "send": "Send",
   "@send": {
     "description": "Text displayed on send button"
+  },
+  "repositoryId": "Repository ID: {id}",
+  "@repositoryId": {
+    "description": "Text displayed on github search view",
+    "placeholders": {
+      "id": {
+        "type": "int?",
+        "example": "1234567"
+      }
+    }
   }
 }

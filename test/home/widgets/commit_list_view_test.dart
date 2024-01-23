@@ -11,23 +11,23 @@ class _MockGithubSearchBloc
     implements GithubSearchBloc {}
 
 void main() {
-  final commit = GithubCommitModel(
+  final githubCommit = GithubCommitModel(
     message: 'message',
     authorName: 'authorName',
     sha: 'sha',
     date: DateTime(2020),
   );
 
-  group('CoomitWidget', () {
+  group('CommitWidget', () {
     testWidgets('renders correctly', (tester) async {
       await tester.pumpSubject(
-        CommitWidget(sha: commit.sha),
+        CommitListItem(githubCommit: githubCommit),
       );
 
       expect(find.text('message'), findsOneWidget);
       expect(find.text('authorName'), findsOneWidget);
       expect(find.text('SHA: sha'), findsOneWidget);
-      expect(find.text(commit.formattedDate), findsOneWidget);
+      expect(find.text(githubCommit.formattedDate), findsOneWidget);
     });
 
     testWidgets('calls onTap', (tester) async {
@@ -36,14 +36,14 @@ void main() {
         () => githubSearchBloc.state,
       ).thenReturn(
         GithubSearchState(
-          repository: GithubRepositoryModel(
+          githubRepository: GithubRepositoryModel(
             id: -1,
-            commits: <GithubCommitModel>[commit],
+            commits: <GithubCommitModel>[githubCommit],
           ),
           cache: <String, GithubRepositoryModel>{
             'repository-name': GithubRepositoryModel(
               id: -1,
-              commits: <GithubCommitModel>[commit],
+              commits: <GithubCommitModel>[githubCommit],
             ),
           },
           status: GithubSearchStatus.success,
@@ -51,7 +51,7 @@ void main() {
       );
 
       await tester.pumpSubject(
-        CommitWidget(sha: commit.sha),
+        CommitListItem(githubCommit: githubCommit),
         githubSearchBloc: githubSearchBloc,
       );
 
@@ -60,7 +60,8 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(
-        () => githubSearchBloc.add(GithubSearchToggleCommit(sha: commit.sha)),
+        () => githubSearchBloc
+            .add(GithubSearchToggleCommit(sha: githubCommit.sha)),
       ).called(1);
     });
   });

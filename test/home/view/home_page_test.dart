@@ -27,12 +27,12 @@ void main() {
   });
 
   group('HomePage', () {
-    testWidgets('renders HomeView', (tester) async {
+    testWidgets('renders HomePageView', (tester) async {
       await tester.pumpSubject(
         const HomePage(),
       );
 
-      expect(find.byType(HomeView), findsOneWidget);
+      expect(find.byType(HomePageView), findsOneWidget);
     });
   });
 
@@ -47,7 +47,7 @@ void main() {
 
     testWidgets('calls onComplete on GithubNameTextfield', (tester) async {
       await tester.pumpSubject(
-        const HomeView(),
+        const HomeBody(),
         githubSearchBloc: bloc,
       );
 
@@ -76,7 +76,7 @@ void main() {
       );
 
       await tester.pumpSubject(
-        const HomeViewBody(),
+        const HomeBody(),
         githubSearchBloc: bloc,
       );
 
@@ -95,7 +95,7 @@ void main() {
       );
 
       await tester.pumpSubject(
-        const HomeViewBody(),
+        const HomeBody(),
         githubSearchBloc: bloc,
       );
 
@@ -108,7 +108,7 @@ void main() {
 
     testWidgets('renders CommitList on success state', (tester) async {
       final state = GithubSearchState(
-        repository: GithubRepositoryModel(
+        githubRepository: GithubRepositoryModel(
           id: -1,
           commits: [
             GithubCommitModel(
@@ -127,21 +127,21 @@ void main() {
       );
 
       await tester.pumpSubject(
-        const HomeViewBody(),
+        const HomeBody(),
         githubSearchBloc: bloc,
       );
 
       await tester.pump();
 
       expect(find.byType(CommitList), findsOneWidget);
-      expect(find.byType(CommitWidget), findsOneWidget);
+      expect(find.byType(CommitListItem), findsOneWidget);
     });
   });
 
   group('ShareButton', () {
-    testWidgets('renders SizedBox wihout selected commit', (tester) async {
+    testWidgets('renders SizedBox without selected commit', (tester) async {
       final state = GithubSearchState(
-        repository: GithubRepositoryModel(
+        githubRepository: GithubRepositoryModel(
           id: -1,
           commits: [
             GithubCommitModel(
@@ -170,7 +170,7 @@ void main() {
 
     testWidgets('renders TextButton with selected commit', (tester) async {
       final state = GithubSearchState(
-        repository: GithubRepositoryModel(
+        githubRepository: GithubRepositoryModel(
           id: -1,
           commits: [
             GithubCommitModel(
@@ -198,9 +198,9 @@ void main() {
       expect(find.byType(SizedBox), findsNothing);
     });
 
-    testWidgets('share on preseed', (tester) async {
+    testWidgets('share on pressed', (tester) async {
       final state = GithubSearchState(
-        repository: GithubRepositoryModel(
+        githubRepository: GithubRepositoryModel(
           id: -1,
           commits: [
             GithubCommitModel(
