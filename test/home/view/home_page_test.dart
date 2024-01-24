@@ -8,6 +8,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../helpers.dart';
 
+//TODO(arturplaczek): rewrite tests for widgets instead of page
 class _MockGithubSearchBloc
     extends MockBloc<GithubSearchEvent, GithubSearchState>
     implements GithubSearchBloc {}
@@ -56,9 +57,10 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.enterText(find.byType(TextField), repositoryName);
-      await tester.tap(find.byType(GithubNameSubmitIcon));
 
       await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(GithubNameSubmitIcon));
 
       verify(() => bloc.add(const GithubSearchEventSearch(repositoryName)));
     });
@@ -99,9 +101,9 @@ void main() {
         githubSearchBloc: bloc,
       );
 
-      await tester.pump();
+      await tester.pumpAndSettle();
 
-      final l10n = tester.element(find.byType(Scaffold)).l10n;
+      final l10n = tester.element(find.byType(CommitListViewFailure)).l10n;
 
       expect(find.text(l10n.errorText), findsOneWidget);
     });
@@ -139,6 +141,7 @@ void main() {
   });
 
   group('ShareButton', () {
+    const shareButtonKey = Key('ShareButton_empty');
     testWidgets('renders SizedBox without selected commit', (tester) async {
       final state = GithubSearchState(
         githubRepository: GithubRepositoryModel(
@@ -164,11 +167,12 @@ void main() {
         githubSearchBloc: bloc,
       );
 
-      expect(find.byType(SizedBox), findsOneWidget);
+      expect(find.byKey(shareButtonKey), findsOneWidget);
       expect(find.byType(TextButton), findsNothing);
     });
 
-    testWidgets('renders TextButton with selected commit', (tester) async {
+    testWidgets('renders FloatingActionButton with selected commit',
+        (tester) async {
       final state = GithubSearchState(
         githubRepository: GithubRepositoryModel(
           id: -1,
@@ -194,8 +198,8 @@ void main() {
         githubSearchBloc: bloc,
       );
 
-      expect(find.byType(TextButton), findsOneWidget);
-      expect(find.byType(SizedBox), findsNothing);
+      expect(find.byType(FloatingActionButton), findsOneWidget);
+      expect(find.byKey(shareButtonKey), findsNothing);
     });
 
     testWidgets('share on pressed', (tester) async {
@@ -224,9 +228,9 @@ void main() {
         githubSearchBloc: bloc,
       );
 
-      expect(find.byType(TextButton), findsOneWidget);
+      expect(find.byType(FloatingActionButton), findsOneWidget);
 
-      await tester.tap(find.byType(TextButton));
+      await tester.tap(find.byType(FloatingActionButton));
     });
   });
 }

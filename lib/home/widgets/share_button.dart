@@ -17,7 +17,9 @@ class ShareButton extends StatelessWidget {
       },
       builder: (context, hasSelection) {
         if (!hasSelection) {
-          return const SizedBox.shrink();
+          return const SizedBox(
+            key: Key('ShareButton_empty'),
+          );
         }
         return FloatingActionButton(
           child: Text(context.l10n.send),

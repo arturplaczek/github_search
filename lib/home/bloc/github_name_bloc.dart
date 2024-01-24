@@ -28,7 +28,6 @@ class GithubNameBloc extends HydratedBloc<GithubNameEvent, GithubNameState> {
     emit(
       state.copyWith(
         githubName: event.githubName,
-        status: GithubNameStatus.initial,
       ),
     );
   }

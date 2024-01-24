@@ -49,9 +49,9 @@ class HomeBody extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: GithubNameTextfield(
               onComplete: (githubName) {
-                context.read<GithubSearchBloc>().add(
-                      GithubSearchEventSearch(githubName),
-                    );
+                context
+                    .read<GithubSearchBloc>()
+                    .add(GithubSearchEventSearch(githubName));
               },
             ),
           ),
